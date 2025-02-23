@@ -1,0 +1,41 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "mybookstoread-721fe",
+                    "appId": "1:306017992007:android:15a4750df9f33adfe86062",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "mybookstoread-721fe",
+                    "appId": "1:306017992007:ios:9e3e6bd017b12b49e86062",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "mybookstoread-721fe",
+                    "appId": "1:306017992007:ios:9e3e6bd017b12b49e86062",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "mybookstoread-721fe",
+                    "configurations": {
+                        "android": "1:306017992007:android:15a4750df9f33adfe86062",
+                        "ios": "1:306017992007:ios:9e3e6bd017b12b49e86062",
+                        "macos": "1:306017992007:ios:9e3e6bd017b12b49e86062",
+                        "web": "1:306017992007:web:5613d31a6ea0f4aae86062",
+                        "windows": "1:306017992007:web:fdada66239f3f020e86062"
+                    }
+                }
+            }
+        }
+    }
+}
