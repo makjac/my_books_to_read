@@ -30,6 +30,7 @@ class ThemeProvider with ChangeNotifier {
     if (themeMode != null) {
       _themeMode = ThemeMode.values.firstWhere(
         (e) => e.toString() == themeMode,
+        orElse: () => ThemeMode.system,
       );
     }
   }
