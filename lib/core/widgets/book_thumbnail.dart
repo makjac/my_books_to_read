@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:my_books_to_read/pages/home/models/trending_books/trending_books.dart';
+import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
 
 class BookThumbnail extends StatelessWidget {
   const BookThumbnail({required this.book, super.key});
 
-  final TrendingBook book;
+  final BookMatch book;
 
   @override
   Widget build(BuildContext context) {
