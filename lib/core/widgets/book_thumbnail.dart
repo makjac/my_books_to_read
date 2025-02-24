@@ -37,15 +37,13 @@ class BookThumbnail extends StatelessWidget {
                   Text(
                     book.title ?? '',
                     maxLines: 2,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     book.authorName?.first ?? '',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
