@@ -4,13 +4,14 @@ mixin ApiConfig {
 
   // Endpoints
   String search(String query, {int offset = 0, int limit = 10}) {
+    assert(query.isNotEmpty, 'Query must not be empty');
     assert(limit >= 1, 'Limit must be greater than or equal to 1');
     assert(offset >= 0, 'Offset must be greater than or equal to 0');
 
     return _buildUrl('/search.json', {
       'q': query,
-      'limit': limit,
-      'offset': offset,
+      'limit': limit.toString(),
+      'offset': offset.toString(),
     });
   }
 
