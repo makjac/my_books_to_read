@@ -58,3 +58,8 @@ web/firebase-config.json
 
 # Generated FlutterFire options
 lib/firebase_options.dart
+
+# gen files
+**/*.g.dart
+**/*.freezed.dart
+**/*.gr.dart
