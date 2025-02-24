@@ -9,6 +9,7 @@ analyzer:
     invalid_annotation_target: ignore
     avoid_catches_without_on_clauses: ignore
     depend_on_referenced_packages: ignore
+    one_member_abstracts: ignore
 
 linter:
   rules:
