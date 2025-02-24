@@ -4,5 +4,14 @@ final locator = GetIt.instance;
 
 Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
-  locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+  final dio = Dio();
+
+  locator
+    ..registerLazySingleton<SharedPreferences>(() => sharedPreferences)
+    ..registerLazySingleton<TrendingBooksApi>(
+      () => TrendingBooksApiImpl(dio: dio),
+    )
+    ..registerFactory<TrendingBooksProvider>(
+      () => TrendingBooksProvider(trendingBooksApi: locator()),
+    );
 }
