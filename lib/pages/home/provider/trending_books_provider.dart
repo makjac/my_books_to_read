@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_books_to_read/core/utils/logger.dart';
 import 'package:my_books_to_read/pages/home/api/trending_books_api.dart';
-import 'package:my_books_to_read/pages/home/models/trending_books/trending_books.dart';
+import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
 
 class TrendingBooksProvider extends ChangeNotifier {
   TrendingBooksProvider({TrendingBooksApi? trendingBooksApi})
@@ -11,11 +11,11 @@ class TrendingBooksProvider extends ChangeNotifier {
 
   int _page = 1;
   bool _isLoading = false;
-  final List<TrendingBook> _books = [];
+  final List<BookMatch> _books = [];
 
   int get page => _page;
   bool get isLoading => _isLoading;
-  List<TrendingBook> get books => _books;
+  List<BookMatch> get books => _books;
 
   Future<void> fetchTrendingBooks() async {
     if (_isLoading) return;
