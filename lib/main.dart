@@ -4,6 +4,7 @@ import 'package:my_books_to_read/app/app.dart';
 import 'package:my_books_to_read/core/theme/theme_provider.dart';
 import 'package:my_books_to_read/firebase_options.dart';
 import 'package:my_books_to_read/injection_container.dart' as di;
+import 'package:my_books_to_read/pages/home/provider/trending_books_provider.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -15,7 +16,13 @@ Future<void> main() async {
 
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => ThemeProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(
+          create:
+              (_) => di.locator<TrendingBooksProvider>()..fetchTrendingBooks(),
+        ),
+      ],
       child: const App(),
     ),
   );
