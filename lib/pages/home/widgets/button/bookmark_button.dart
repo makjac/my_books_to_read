@@ -118,7 +118,7 @@ class _BookmarkButtonState extends State<BookmarkButton> {
           Icons.star_border,
           color: context.colorScheme.onSurface.withValues(alpha: .5),
         ),
-        iconSize: 20,
+        iconSize: 25,
         onPressed: () {
           SnackbarUtils.showSnackBar(
             context,
@@ -156,7 +156,7 @@ class _BookmarkButtonState extends State<BookmarkButton> {
       ),
       tooltip:
           isBookSaved ? 'Remove from must-read list' : 'Add to must-read list',
-      iconSize: 20,
+      iconSize: 25,
       onPressed: toggleIcon,
     );
   }
