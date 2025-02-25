@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_books_to_read/core/widgets/book_thumbnail.dart';
-import 'package:my_books_to_read/pages/home/models/trending_books/trending_books.dart';
+import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
 
 class HomeBooksGrid extends StatelessWidget {
   const HomeBooksGrid({
@@ -9,7 +9,7 @@ class HomeBooksGrid extends StatelessWidget {
     super.key,
   });
 
-  final List<TrendingBook> books;
+  final List<BookMatch> books;
   final bool isLoading;
 
   @override
