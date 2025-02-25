@@ -20,14 +20,13 @@ class AuthButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: context.colorScheme.primary,
-          foregroundColor: Colors.white,
+          backgroundColor: context.colorScheme.secondaryContainer,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
           elevation: 3,
-          shadowColor: context.colorScheme.primary.withValues(alpha: .5),
+          shadowColor: context.colorScheme.secondaryContainer,
         ),
         child:
             isLoading
