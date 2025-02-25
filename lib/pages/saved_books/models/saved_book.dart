@@ -38,7 +38,7 @@ class SavedBook with _$SavedBook {
 
   factory SavedBook.fromBookMatch(BookMatch book) {
     return SavedBook(
-      id: book.key?.replaceAll('/works/', '') ?? '',
+      id: book.bookId,
       title: book.title ?? 'Unknown Title',
       authorNames: book.authorName ?? [],
       coverImageUrl: book.coverI != null ? book.coverImageUrl : '',

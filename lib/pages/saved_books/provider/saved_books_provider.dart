@@ -79,11 +79,10 @@ class SavedBooksProvider with ChangeNotifier {
 
   Future<void> saveBook(BookMatch book) async {
     try {
-      final bookId = book.key?.replaceAll('/works/', '') ?? '';
-      final exists = await _repository.bookExists(bookId);
+      final exists = await _repository.bookExists(book.bookId);
 
       if (exists) {
-        await _repository.updateBookTimestamp(bookId);
+        await _repository.updateBookTimestamp(book.bookId);
       } else {
         final savedBook = _repository.createSavedBookFromBookMatch(book);
         await _repository.saveBook(savedBook);
@@ -111,8 +110,7 @@ class SavedBooksProvider with ChangeNotifier {
   }
 
   Future<bool> isBookExist(BookMatch book) async {
-    final bookId = book.key?.replaceAll('/works/', '') ?? '';
-    return _repository.bookExists(bookId);
+    return _repository.bookExists(book.bookId);
   }
 
   Future<void> clearState() async {

@@ -26,8 +26,7 @@ class _BookmarkButtonState extends State<BookmarkButton> {
   Future<bool> isBookSaved(BookMatch book) async {
     _isLoading = true;
     try {
-      final bookId = book.key?.replaceAll('/works/', '') ?? '';
-      return locator<SavedBooksRepository>().bookExists(bookId);
+      return locator<SavedBooksRepository>().bookExists(book.bookId);
     } finally {
       _isLoading = false;
     }
@@ -82,9 +81,8 @@ class _BookmarkButtonState extends State<BookmarkButton> {
   }
 
   Future<void> toggleIcon() async {
-    final bookId = widget.book.key?.replaceAll('/works/', '') ?? '';
     if (_isBookSaved ?? false) {
-      await context.read<SavedBooksProvider>().removeBook(bookId);
+      await context.read<SavedBooksProvider>().removeBook(widget.book.bookId);
       if (mounted) {
         setState(() {
           _isBookSaved = false;
