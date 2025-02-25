@@ -39,6 +39,12 @@ A Flutter application for managing your reading list. Search for books, save the
       firebase login
       ```
 
+    - From any directory, run this command:
+
+        ```sh
+        dart pub global activate flutterfire_cli
+        ```
+
     - Configure Firebase for your project by providing your Firebase Project ID:
 
       ```sh
@@ -83,6 +89,14 @@ flutter drive \
   --target=integration_test/app_test.dart
 ```
 
+## Screenshots
+
+![screenshot_0][my_books_to_read_0]
+![screenshot_1][my_books_to_read_1]
+![screenshot_2][my_books_to_read_2]
+![screenshot_3][my_books_to_read_3]
+![screenshot_4][my_books_to_read_4]
+
 <!-- end:excluded_rules_table -->
 
 [header_image_url]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/My%20Books%20To%20Read/my_books_to_read.png
@@ -92,3 +106,9 @@ flutter drive \
 
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
+
+[my_books_to_read_0]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/My%20Books%20To%20Read/my_books_to_read_0.png
+[my_books_to_read_1]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/My%20Books%20To%20Read/my_books_to_read_1.png
+[my_books_to_read_2]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/My%20Books%20To%20Read/my_books_to_read_2.png
+[my_books_to_read_3]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/My%20Books%20To%20Read/my_books_to_read_3.png
+[my_books_to_read_4]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/My%20Books%20To%20Read/my_books_to_read_4.png
