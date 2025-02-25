@@ -32,7 +32,7 @@ class HomeBooksGrid extends StatelessWidget {
           crossAxisCount: crossAxisCount,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
-          childAspectRatio: 1.7,
+          childAspectRatio: 2,
         ),
       ),
     );
