@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:my_books_to_read/core/theme/theme_extension.dart';
 import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
 import 'package:my_books_to_read/pages/home/provider/search_books_provider.dart';
 import 'package:my_books_to_read/pages/home/provider/trending_books_provider.dart';
@@ -100,12 +101,39 @@ class BooksConsumer<T extends ChangeNotifier> extends StatelessWidget {
             child:
                 isLoading
                     ? const Center(child: CircularProgressIndicator())
-                    : const Center(child: Text('No books found')),
+                    : const _EmptyBookList(),
           );
         }
 
         return HomeBooksGrid(books: books, isLoading: isLoading);
       },
+    );
+  }
+}
+
+class _EmptyBookList extends StatelessWidget {
+  const _EmptyBookList();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.search_off,
+            size: 64,
+            color: context.colorScheme.onSurface.withValues(alpha: .5),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'No books found',
+            style: context.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
