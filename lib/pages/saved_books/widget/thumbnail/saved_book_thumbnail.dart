@@ -143,7 +143,7 @@ class RemoveBook extends StatelessWidget {
       icon: const Icon(Icons.delete_outline),
       onPressed: onRemove,
       tooltip: 'Add to must-read list',
-      iconSize: 20,
+      iconSize: 25,
     );
   }
 }
