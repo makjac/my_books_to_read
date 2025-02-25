@@ -13,7 +13,6 @@ class SectionHeader extends StatelessWidget {
       child: Text(
         title.toUpperCase(),
         style: context.textTheme.labelLarge?.copyWith(
-          color: context.colorScheme.primary,
           fontWeight: FontWeight.w500,
           letterSpacing: 1.2,
         ),
