@@ -32,7 +32,7 @@ void main() {
 
     test('Book coverUrl', () {
       const book = book_m.Book(covers: [12345]);
-      expect(book.coverUrl, 'http://covers.openlibrary.org/b/id/12345-L.jpg');
+      expect(book.coverUrl, 'https://covers.openlibrary.org/b/id/12345-M.jpg');
 
       const bookWithoutCovers = book_m.Book();
       expect(bookWithoutCovers.coverUrl, '');

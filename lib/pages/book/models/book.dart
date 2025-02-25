@@ -42,7 +42,7 @@ dynamic _parseDescription(dynamic description) {
 extension BookExtension on Book {
   String get coverUrl =>
       covers != null && covers!.isNotEmpty
-          ? 'http://covers.openlibrary.org/b/id/${covers?.first}-L.jpg'
+          ? 'https://covers.openlibrary.org/b/id/${covers?.first}-M.jpg'
           : '';
 
   String get descriptionText {
