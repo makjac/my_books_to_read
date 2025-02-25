@@ -13,5 +13,9 @@ Future<void> init() async {
     )
     ..registerFactory<TrendingBooksProvider>(
       () => TrendingBooksProvider(trendingBooksApi: locator()),
+    )
+    ..registerLazySingleton<SearchBooksApi>(() => SearchBooksApiImpl(dio: dio))
+    ..registerFactory<SearchBooksProvider>(
+      () => SearchBooksProvider(searchApi: locator()),
     );
 }

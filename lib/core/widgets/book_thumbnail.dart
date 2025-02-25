@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:my_books_to_read/pages/home/models/trending_books/trending_books.dart';
+import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
 
 class BookThumbnail extends StatelessWidget {
   const BookThumbnail({required this.book, super.key});
 
-  final TrendingBook book;
+  final BookMatch book;
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +30,21 @@ class BookThumbnail extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 8,
                 children: [
                   Text(
                     book.title ?? '',
                     maxLines: 2,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     book.authorName?.first ?? '',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
