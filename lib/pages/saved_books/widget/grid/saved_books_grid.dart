@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_books_to_read/pages/saved_books/models/saved_book.dart';
 import 'package:my_books_to_read/pages/saved_books/provider/saved_books_provider.dart';
-import 'package:my_books_to_read/pages/saved_books/widget/Thumbnail/saved_book_thumbnail.dart';
 import 'package:my_books_to_read/pages/saved_books/widget/dialog/remove_book_dialog.dart';
+import 'package:my_books_to_read/pages/saved_books/widget/thumbnail/saved_book_thumbnail.dart';
 
 class SavedBooksGrid extends StatelessWidget {
   const SavedBooksGrid({
