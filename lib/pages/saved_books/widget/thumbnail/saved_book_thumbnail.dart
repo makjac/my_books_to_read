@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:my_books_to_read/core/router/app_router.dart';
 import 'package:my_books_to_read/core/theme/theme_extension.dart';
 import 'package:my_books_to_read/pages/saved_books/models/saved_book.dart';
 
@@ -15,18 +17,21 @@ class SavedBookThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BookCover(book: savedBook),
-            const SizedBox(width: 16),
-            BookDetails(book: savedBook),
-            RemoveBook(onRemove: onRemove),
-          ],
+    return GestureDetector(
+      onTap: () => context.pushRoute(BookRoute(bookId: savedBook.id)),
+      child: Card(
+        elevation: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BookCover(book: savedBook),
+              const SizedBox(width: 16),
+              BookDetails(book: savedBook),
+              RemoveBook(onRemove: onRemove),
+            ],
+          ),
         ),
       ),
     );
