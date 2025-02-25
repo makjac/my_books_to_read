@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:my_books_to_read/core/auth/auth_provider.dart';
 import 'package:my_books_to_read/core/router/app_router.dart';
+import 'package:my_books_to_read/core/utils/snackbar_utils.dart';
 import 'package:my_books_to_read/pages/auth/widgets/auth_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +35,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final success = await context.read<AuthProvider>().signUp(email, password);
 
     if (success && mounted) {
+      SnackbarUtils.showSnackBar(context, message: 'Registered successfully');
       unawaited(context.router.replaceAll([const DashboardRoute()]));
+    } else if (mounted) {
+      final errorMessage = context.read<AuthProvider>().errorMessage;
+      SnackbarUtils.showSnackBar(
+        context,
+        message: errorMessage ?? 'An error occurred',
+        isError: true,
+      );
     }
   }
 
