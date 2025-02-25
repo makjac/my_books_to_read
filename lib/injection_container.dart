@@ -5,6 +5,8 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:get_it/get_it.dart';
 import 'package:my_books_to_read/core/auth/auth_provider.dart';
+import 'package:my_books_to_read/pages/book/api/book_details_api.dart';
+import 'package:my_books_to_read/pages/book/provider/books_details_provider.dart';
 import 'package:my_books_to_read/pages/home/api/search_books_api.dart';
 import 'package:my_books_to_read/pages/home/api/trending_books_api.dart';
 import 'package:my_books_to_read/pages/home/provider/search_books_provider.dart';

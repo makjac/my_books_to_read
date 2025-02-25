@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:my_books_to_read/core/auth/auth_provider.dart';
 import 'package:my_books_to_read/core/utils/snackbar_utils.dart';
 import 'package:my_books_to_read/pages/auth/view/auth_page.dart';
+import 'package:my_books_to_read/pages/book/view/book_page.dart';
 import 'package:my_books_to_read/pages/dashboard/view/dashboard_page.dart';
 import 'package:my_books_to_read/pages/home/view/home_page.dart';
 import 'package:my_books_to_read/pages/saved_books/view/saved_books_page.dart';
@@ -27,6 +29,7 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: AuthRoute.page, guards: [AuthGuard()]),
+    AutoRoute(page: BookRoute.page),
   ];
 }
 

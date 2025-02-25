@@ -24,5 +24,7 @@ Future<void> init() async {
     ..registerLazySingleton<SavedBooksRepository>(
       () => SavedBooksRepositoryImpl(firestore: firestore, auth: firebaseAuth),
     )
-    ..registerFactory(() => SavedBooksProvider(repository: locator()));
+    ..registerFactory(() => SavedBooksProvider(repository: locator()))
+    ..registerLazySingleton<BookDetailsApi>(() => BookDetailsApiImpl(dio: dio))
+    ..registerFactory(() => BooksDetailsProvider(api: locator()));
 }
