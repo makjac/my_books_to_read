@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
+import 'package:my_books_to_read/pages/home/provider/search_books_provider.dart';
 import 'package:my_books_to_read/pages/home/provider/trending_books_provider.dart';
 import 'package:my_books_to_read/pages/home/widgets/home_widgets.dart';
 import 'package:provider/provider.dart';
@@ -15,47 +17,95 @@ class HomePage extends StatelessWidget {
         onNotification: (notification) {
           final metrics = notification.metrics;
           if (metrics.pixels >= metrics.maxScrollExtent - 300) {
-            final provider = context.read<TrendingBooksProvider>();
-            if (!provider.isLoading && provider.books.isNotEmpty) {
-              provider.fetchTrendingBooks();
+            final searchProvider = context.read<SearchBooksProvider>();
+            final trendingProvider = context.read<TrendingBooksProvider>();
+
+            if (searchProvider.query.isEmpty) {
+              if (!trendingProvider.isLoading &&
+                  trendingProvider.books.isNotEmpty) {
+                trendingProvider.fetchTrendingBooks();
+              }
+            } else {
+              if (!searchProvider.isLoading &&
+                  searchProvider.books.isNotEmpty) {
+                searchProvider.searchMoreBooks();
+              }
             }
           }
           return false;
         },
         child: CustomScrollView(
-          slivers: [
-            const SliverAppBar(
-              title: Padding(
-                padding: EdgeInsets.only(left: 4),
-                child: Text('My Books to Read'),
-              ),
-              pinned: true,
-              floating: true,
-              automaticallyImplyLeading: false,
-              centerTitle: false,
-              expandedHeight: 120,
-              bottom: HomeSearchbar(),
-            ),
-            Consumer<TrendingBooksProvider>(
-              builder: (context, provider, _) {
-                if (provider.books.isEmpty) {
-                  return SliverFillRemaining(
-                    child:
-                        provider.isLoading
-                            ? const Center(child: CircularProgressIndicator())
-                            : const Center(child: Text('No books found')),
-                  );
-                }
-
-                return HomeBooksGrid(
-                  books: provider.books,
-                  isLoading: provider.isLoading,
-                );
-              },
-            ),
-          ],
+          slivers: [_buildHomeAppBar(context), _buildBooksGrid()],
         ),
       ),
+    );
+  }
+
+  Consumer<SearchBooksProvider> _buildBooksGrid() {
+    return Consumer<SearchBooksProvider>(
+      builder: (context, searchProvider, _) {
+        if (searchProvider.query.isEmpty) {
+          return BooksConsumer<TrendingBooksProvider>(
+            getBooks: (provider) => provider.books,
+            getIsLoading: (provider) => provider.isLoading,
+          );
+        } else {
+          return BooksConsumer<SearchBooksProvider>(
+            getBooks: (provider) => provider.books,
+            getIsLoading: (provider) => provider.isLoading,
+          );
+        }
+      },
+    );
+  }
+
+  SliverAppBar _buildHomeAppBar(BuildContext context) {
+    return SliverAppBar(
+      title: const Padding(
+        padding: EdgeInsets.only(left: 4),
+        child: Text('My Books to Read'),
+      ),
+      pinned: true,
+      floating: true,
+      automaticallyImplyLeading: false,
+      centerTitle: false,
+      expandedHeight: 120,
+      bottom: HomeSearchbar(
+        onChanged: (query) {
+          context.read<SearchBooksProvider>().searchBooks(query);
+        },
+      ),
+    );
+  }
+}
+
+class BooksConsumer<T extends ChangeNotifier> extends StatelessWidget {
+  const BooksConsumer({
+    required this.getBooks,
+    required this.getIsLoading,
+    super.key,
+  });
+
+  final List<BookMatch> Function(T) getBooks;
+  final bool Function(T) getIsLoading;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<T>(
+      builder: (context, provider, _) {
+        final books = getBooks(provider);
+        final isLoading = getIsLoading(provider);
+        if (books.isEmpty) {
+          return SliverFillRemaining(
+            child:
+                isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : const Center(child: Text('No books found')),
+          );
+        }
+
+        return HomeBooksGrid(books: books, isLoading: isLoading);
+      },
     );
   }
 }
