@@ -26,7 +26,7 @@ class TrendingBooksProvider extends ChangeNotifier {
     try {
       final newBooks = await _trendingBooksApi.call(page: _page);
 
-      _books.addAll(newBooks);
+      _books.addAll(newBooks?.works ?? []);
       _page++;
     } catch (e) {
       Logger.showLog(
