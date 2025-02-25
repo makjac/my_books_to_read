@@ -6,6 +6,7 @@ import 'package:my_books_to_read/core/auth/auth_provider.dart';
 import 'package:my_books_to_read/core/router/app_router.dart';
 import 'package:my_books_to_read/core/utils/snackbar_utils.dart';
 import 'package:my_books_to_read/pages/auth/widgets/auth_widgets.dart';
+import 'package:my_books_to_read/pages/saved_books/provider/saved_books_provider.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -37,6 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (success && mounted) {
       SnackbarUtils.showSnackBar(context, message: 'Registered successfully');
       unawaited(context.router.replaceAll([const DashboardRoute()]));
+      await context.read<SavedBooksProvider>().loadSavedBooks();
     } else if (mounted) {
       final errorMessage = context.read<AuthProvider>().errorMessage;
       SnackbarUtils.showSnackBar(
@@ -68,6 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           controller: emailController,
           label: 'Email',
           icon: Icons.email,
+          keyboardType: TextInputType.emailAddress,
         ),
         const SizedBox(height: 20),
         AuthTextField(
