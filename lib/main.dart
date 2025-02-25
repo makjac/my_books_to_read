@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:my_books_to_read/app/app.dart';
+import 'package:my_books_to_read/core/auth/auth_provider.dart';
 import 'package:my_books_to_read/core/theme/theme_provider.dart';
 import 'package:my_books_to_read/firebase_options.dart';
 import 'package:my_books_to_read/injection_container.dart' as di;
@@ -26,6 +27,7 @@ Future<void> main() async {
         ChangeNotifierProvider(
           create: (_) => di.locator<SearchBooksProvider>(),
         ),
+        ChangeNotifierProvider(create: (_) => di.locator<AuthProvider>()),
       ],
       child: const App(),
     ),
