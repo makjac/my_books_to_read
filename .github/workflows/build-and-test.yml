@@ -23,6 +23,11 @@ jobs:
           flutter-version: "3.19.0"
           channel: "stable"
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
