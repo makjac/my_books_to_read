@@ -29,5 +29,5 @@ class BookMatch with _$BookMatch {
 
 extension BookMatchX on BookMatch {
   String get coverImageUrl =>
-      'https://covers.openlibrary.org/b/id/${coverI}-M.jpg';
+      'https://covers.openlibrary.org/b/id/$coverI-M.jpg';
 }

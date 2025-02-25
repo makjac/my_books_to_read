@@ -5,6 +5,7 @@ final locator = GetIt.instance;
 Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   final dio = Dio();
+  final firebaseAuth = fb_auth.FirebaseAuth.instance;
 
   locator
     ..registerLazySingleton<SharedPreferences>(() => sharedPreferences)
@@ -17,5 +18,6 @@ Future<void> init() async {
     ..registerLazySingleton<SearchBooksApi>(() => SearchBooksApiImpl(dio: dio))
     ..registerFactory<SearchBooksProvider>(
       () => SearchBooksProvider(searchApi: locator()),
-    );
+    )
+    ..registerFactory<AuthProvider>(() => AuthProvider(auth: firebaseAuth));
 }
