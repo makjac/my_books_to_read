@@ -3,12 +3,13 @@ import 'package:my_books_to_read/core/router/app_router.dart';
 import 'package:my_books_to_read/core/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
+final _appRouter = AppRouter();
+
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = AppRouter();
     final themeProvider = context.watch<ThemeProvider>();
 
     return MaterialApp.router(
@@ -17,7 +18,7 @@ class App extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       theme: themeProvider.lightTheme,
       darkTheme: themeProvider.darkTheme,
-      routerConfig: appRouter.config(),
+      routerConfig: _appRouter.config(),
     );
   }
 }
