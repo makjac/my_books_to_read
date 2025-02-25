@@ -2,8 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:my_books_to_read/core/theme/theme_extension.dart';
 import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
-import 'package:my_books_to_read/pages/saved_books/provider/saved_books_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:my_books_to_read/pages/home/widgets/button/bookmark_button.dart';
 
 class BookThumbnail extends StatelessWidget {
   const BookThumbnail({required this.book, super.key});
@@ -113,24 +112,6 @@ class BookDetails extends StatelessWidget {
             ),
         ],
       ),
-    );
-  }
-}
-
-class BookmarkButton extends StatelessWidget {
-  const BookmarkButton({required this.book, super.key});
-
-  final BookMatch book;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.bookmark_border),
-      onPressed: () {
-        context.read<SavedBooksProvider>().saveBook(book);
-      },
-      tooltip: 'Add to must-read list',
-      iconSize: 20,
     );
   }
 }
