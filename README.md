@@ -39,6 +39,12 @@ A Flutter application for managing your reading list. Search for books, save the
       firebase login
       ```
 
+    - From any directory, run this command:
+
+        ```sh
+        dart pub global activate flutterfire_cli
+        ```
+
     - Configure Firebase for your project by providing your Firebase Project ID:
 
       ```sh
