@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_books_to_read/core/auth/auth_provider.dart';
 import 'package:my_books_to_read/core/utils/snackbar_utils.dart';
+import 'package:my_books_to_read/pages/saved_books/provider/saved_books_provider.dart';
 import 'package:my_books_to_read/pages/settings/widgets/card/authenticated_account_card.dart';
 import 'package:my_books_to_read/pages/settings/widgets/header/section_header.dart';
 import 'package:my_books_to_read/pages/settings/widgets/tile/login_tile.dart';
@@ -14,6 +15,7 @@ class AccountSection extends StatelessWidget {
 
     if (success && context.mounted) {
       SnackbarUtils.showSnackBar(context, message: 'Logged out successfully');
+      await context.read<SavedBooksProvider>().clearState();
     } else if (context.mounted) {
       final errorMessage = context.read<AuthProvider>().errorMessage;
       SnackbarUtils.showSnackBar(
