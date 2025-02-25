@@ -68,14 +68,18 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<void> signOut() async {
+  Future<bool> signOut() async {
     try {
       await _auth.signOut().then((_) {
         Logger.showLog('User signed out', 'AuthProvider');
       });
+      return true;
     } catch (e) {
       Logger.showLog('Error signing out: $e', 'AuthProvider');
       _errorMessage = 'Error signing out';
+      return false;
+    } finally {
+      _isLoading = false;
       notifyListeners();
     }
   }
@@ -90,6 +94,8 @@ class AuthProvider with ChangeNotifier {
     switch (exception.code) {
       case 'user-not-found':
         return 'Not found user with this email';
+      case 'invalid-credential':
+        return 'Invalid credential';
       case 'wrong-password':
         return 'Nieprawidłowe hasło';
       case 'email-already-in-use':
