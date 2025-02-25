@@ -5,6 +5,7 @@ import 'package:my_books_to_read/core/auth/auth_provider.dart';
 import 'package:my_books_to_read/core/theme/theme_provider.dart';
 import 'package:my_books_to_read/firebase_options.dart';
 import 'package:my_books_to_read/injection_container.dart' as di;
+import 'package:my_books_to_read/pages/book/provider/books_details_provider.dart';
 import 'package:my_books_to_read/pages/home/provider/search_books_provider.dart';
 import 'package:my_books_to_read/pages/home/provider/trending_books_provider.dart';
 import 'package:my_books_to_read/pages/saved_books/provider/saved_books_provider.dart';
@@ -33,6 +34,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<SavedBooksProvider>()..loadSavedBooks(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<BooksDetailsProvider>(),
         ),
       ],
       child: const App(),
