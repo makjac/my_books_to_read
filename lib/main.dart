@@ -27,7 +27,9 @@ Future<void> main() async {
         ChangeNotifierProvider(
           create: (_) => di.locator<SearchBooksProvider>(),
         ),
-        ChangeNotifierProvider(create: (_) => di.locator<AuthProvider>()),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<AuthProvider>()..checkUser(),
+        ),
       ],
       child: const App(),
     ),
