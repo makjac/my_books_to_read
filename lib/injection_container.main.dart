@@ -6,6 +6,7 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   final dio = Dio();
   final firebaseAuth = fb_auth.FirebaseAuth.instance;
+  final firestore = FirebaseFirestore.instance;
 
   locator
     ..registerLazySingleton<SharedPreferences>(() => sharedPreferences)
@@ -19,5 +20,9 @@ Future<void> init() async {
     ..registerFactory<SearchBooksProvider>(
       () => SearchBooksProvider(searchApi: locator()),
     )
-    ..registerFactory<AuthProvider>(() => AuthProvider(auth: firebaseAuth));
+    ..registerFactory<AuthProvider>(() => AuthProvider(auth: firebaseAuth))
+    ..registerLazySingleton<SavedBooksRepository>(
+      () => SavedBooksRepositoryImpl(firestore: firestore, auth: firebaseAuth),
+    )
+    ..registerFactory(() => SavedBooksProvider(repository: locator()));
 }

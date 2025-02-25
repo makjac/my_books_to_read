@@ -4,7 +4,7 @@ import 'package:my_books_to_read/core/utils/snackbar_utils.dart';
 import 'package:my_books_to_read/pages/auth/view/auth_page.dart';
 import 'package:my_books_to_read/pages/dashboard/view/dashboard_page.dart';
 import 'package:my_books_to_read/pages/home/view/home_page.dart';
-import 'package:my_books_to_read/pages/saved/view/saved_page.dart';
+import 'package:my_books_to_read/pages/saved_books/view/saved_books_page.dart';
 import 'package:my_books_to_read/pages/settings/view/settings_page.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +22,7 @@ class AppRouter extends RootStackRouter {
       initial: true,
       children: [
         AutoRoute(page: HomeRoute.page),
-        AutoRoute(page: SavedRoute.page),
+        AutoRoute(page: SavedBooksRoute.page),
         AutoRoute(page: SettingsRoute.page),
       ],
     ),

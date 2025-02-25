@@ -9,7 +9,7 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: const [HomeRoute(), SavedRoute(), SettingsRoute()],
+      routes: const [HomeRoute(), SavedBooksRoute(), SettingsRoute()],
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
 
