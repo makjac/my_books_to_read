@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:my_books_to_read/pages/auth/view/auth_page.dart';
 import 'package:my_books_to_read/pages/dashboard/view/dashboard_page.dart';
 import 'package:my_books_to_read/pages/home/view/home_page.dart';
 import 'package:my_books_to_read/pages/saved/view/saved_page.dart';
@@ -22,5 +23,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: SettingsRoute.page),
       ],
     ),
+    AutoRoute(page: AuthRoute.page),
   ];
 }
