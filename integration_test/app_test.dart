@@ -3,9 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:my_books_to_read/core/widgets/books_grid.dart';
 import 'package:my_books_to_read/firebase_options.dart';
 import 'package:my_books_to_read/main.dart' as app;
 import 'package:my_books_to_read/pages/book/view/book_page.dart';
+import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
 import 'package:my_books_to_read/pages/home/widgets/button/bookmark_button.dart';
 import 'package:my_books_to_read/pages/home/widgets/home_widgets.dart';
 
@@ -72,11 +74,8 @@ void main() {
     await tester.enterText(searchField, 'Harry Potter');
     await tester.pumpAndSettle();
 
-    // Wait for search results
-    await tester.pump(const Duration(seconds: 2));
-
     // Verify search results are displayed
-    expect(find.byType(HomeBooksGrid), findsOneWidget);
+    expect(find.byType(BooksGrid<BookMatch>), findsOneWidget);
 
     // Test book details
     final firstBook = find.byType(CachedNetworkImage).first;

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
-import 'package:my_books_to_read/pages/home/widgets/thumbnail/book_thumbnail.dart';
 
-class HomeBooksGrid extends StatelessWidget {
-  const HomeBooksGrid({
+class BooksGrid<T> extends StatelessWidget {
+  const BooksGrid({
     required this.books,
     required this.isLoading,
+    required this.itemBuilder,
     super.key,
   });
 
-  final List<BookMatch> books;
+  final List<T> books;
   final bool isLoading;
+  final Widget Function(BuildContext context, int index, T item) itemBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class HomeBooksGrid extends StatelessWidget {
           if (index >= books.length) {
             return const _LoadingMoreIndicator();
           }
-          return BookThumbnail(book: books[index]);
+          return itemBuilder(context, index, books[index]);
           // ignore: require_trailing_commas
         }, childCount: books.length + (isLoading ? 1 : 0)),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

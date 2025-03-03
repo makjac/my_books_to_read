@@ -18,6 +18,7 @@ class TrendingBooksProvider extends ChangeNotifier {
   List<BookMatch> get books => _books;
 
   Future<void> fetchTrendingBooks() async {
+    Logger.showLog('Fetching trending books', 'TrendingBooksProvider');
     if (_isLoading) return;
 
     _isLoading = true;
