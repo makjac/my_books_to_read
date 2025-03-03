@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:my_books_to_read/core/theme/theme_extension.dart';
+import 'package:my_books_to_read/core/widgets/book_thumbnail.dart';
+import 'package:my_books_to_read/core/widgets/books_grid.dart';
 import 'package:my_books_to_read/pages/home/models/book_match/book_match.dart';
 import 'package:my_books_to_read/pages/home/provider/search_books_provider.dart';
 import 'package:my_books_to_read/pages/home/provider/trending_books_provider.dart';
@@ -42,24 +44,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Consumer<SearchBooksProvider> _buildBooksGrid() {
-    return Consumer<SearchBooksProvider>(
-      builder: (context, searchProvider, _) {
-        if (searchProvider.query.isEmpty) {
-          return BooksConsumer<TrendingBooksProvider>(
-            getBooks: (provider) => provider.books,
-            getIsLoading: (provider) => provider.isLoading,
-          );
-        } else {
-          return BooksConsumer<SearchBooksProvider>(
-            getBooks: (provider) => provider.books,
-            getIsLoading: (provider) => provider.isLoading,
-          );
-        }
-      },
-    );
-  }
-
   SliverAppBar _buildHomeAppBar(BuildContext context) {
     return SliverAppBar(
       title: const Padding(
@@ -76,6 +60,24 @@ class HomePage extends StatelessWidget {
           context.read<SearchBooksProvider>().searchBooks(query);
         },
       ),
+    );
+  }
+
+  Consumer<SearchBooksProvider> _buildBooksGrid() {
+    return Consumer<SearchBooksProvider>(
+      builder: (context, searchProvider, _) {
+        if (searchProvider.query.isEmpty) {
+          return BooksConsumer<TrendingBooksProvider>(
+            getBooks: (provider) => provider.books,
+            getIsLoading: (provider) => provider.isLoading,
+          );
+        } else {
+          return BooksConsumer<SearchBooksProvider>(
+            getBooks: (provider) => provider.books,
+            getIsLoading: (provider) => provider.isLoading,
+          );
+        }
+      },
     );
   }
 }
@@ -105,7 +107,20 @@ class BooksConsumer<T extends ChangeNotifier> extends StatelessWidget {
           );
         }
 
-        return HomeBooksGrid(books: books, isLoading: isLoading);
+        return BooksGrid(
+          books: books,
+          isLoading: isLoading,
+          itemBuilder:
+              (context, index, book) => BookThumbnail<BookMatch>(
+                item: book,
+                getBookId: (b) => b.bookId,
+                getCoverImageUrl: (b) => b.coverImageUrl,
+                getTitle: (b) => b.title ?? 'Unknown title',
+                getAuthorNames: (b) => b.authorName ?? [],
+                getFirstPublishYear: (b) => b.firstPublishYear,
+                actionBuilder: (context, book) => BookmarkButton(book: book),
+              ),
+        );
       },
     );
   }
