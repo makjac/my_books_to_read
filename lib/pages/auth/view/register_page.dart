@@ -26,7 +26,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late TextEditingController passwordController;
   late TextEditingController repeatPasswordController;
   bool _isLoading = false;
-  bool _acceptTerms = false;
 
   @override
   void initState() {
@@ -38,15 +37,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future<void> _handleSignUp() async {
     if (!_formKey.currentState!.validate()) return;
-
-    if (!_acceptTerms) {
-      SnackbarUtils.showSnackBar(
-        context,
-        message: 'Please accept the Terms and Conditions',
-        isError: true,
-      );
-      return;
-    }
 
     setState(() {
       _isLoading = true;
@@ -79,12 +69,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
-  void _onTermsChanged(bool? value) {
-    setState(() {
-      _acceptTerms = value ?? false;
-    });
-  }
-
   @override
   void dispose() {
     emailController.dispose();
@@ -107,8 +91,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           passwordController: passwordController,
           repeatPasswordController: repeatPasswordController,
           isLoading: _isLoading,
-          acceptTerms: _acceptTerms,
-          onTermsChanged: _onTermsChanged,
           onSignUp: _handleSignUp,
           onSwitchToLogin: widget.onTap,
         ),
@@ -138,8 +120,6 @@ class _RegisterForm extends StatelessWidget {
     required this.passwordController,
     required this.repeatPasswordController,
     required this.isLoading,
-    required this.acceptTerms,
-    required this.onTermsChanged,
     required this.onSignUp,
     required this.onSwitchToLogin,
   });
@@ -149,8 +129,6 @@ class _RegisterForm extends StatelessWidget {
   final TextEditingController passwordController;
   final TextEditingController repeatPasswordController;
   final bool isLoading;
-  final bool acceptTerms;
-  final ValueChanged<bool?> onTermsChanged;
   final VoidCallback onSignUp;
   final VoidCallback onSwitchToLogin;
 
